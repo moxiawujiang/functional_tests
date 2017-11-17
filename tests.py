@@ -19,8 +19,8 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     @classmethod
     def tearDownClass(cls):
-        if cls.server_url==cls.live_server_url:
-            super().tearDownClass()
+        # if cls.server_url==cls.live_server_url:
+        super().tearDownClass()
 
     def setUp(self):
         self.driver=webdriver.Firefox()
@@ -48,7 +48,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.assertIn("just do it",self.driver.title)
         #头部也有just do it的字样
         header_text=self.driver.find_element_by_tag_name('h1').text
-        self.assertIn("just do it",header_text)
+        self.assertIn("小墨菇",header_text)
 
         #系统邀请她填写一个输入一个待办事项
         self.assertEqual(
@@ -101,6 +101,8 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def test_layout_and_styling(self):
         self.driver.get(self.server_url)
+
+
 
 
 
