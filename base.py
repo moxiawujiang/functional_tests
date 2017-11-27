@@ -5,7 +5,7 @@ from selenium import  webdriver
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 class Functionaltest(StaticLiveServerTestCase):
-      #{%csrf_token%}
+
     @classmethod
     def setUpClass(cls):
         for arg in  sys.argv:
