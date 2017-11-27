@@ -3,35 +3,10 @@ __author__ = 'ZS'
 import sys
 from selenium import  webdriver
 from selenium.webdriver.common.keys import Keys
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import time
+from .base import  Functionaltest
 
-class NewVisitorTest(StaticLiveServerTestCase):
-      #{%csrf_token%}
-    @classmethod
-    def setUpClass(cls):
-        for arg in  sys.argv:
-            if 'liveserver' in arg:
-                cls.server_url='http://'+arg.split('=')[1]
-                return
-        super().setUpClass()
-        cls.server_url=cls.live_server_url
-
-    @classmethod
-    def tearDownClass(cls):
-        # if cls.server_url==cls.live_server_url:
-        super().tearDownClass()
-
-    def setUp(self):
-        self.driver=webdriver.Firefox()
-    def tearDown(self):
-        self.driver.refresh()
-        self.driver.quit()
-
-    def check_for_row_in_list_table(self,row_text):
-        table=self.driver.find_element_by_id('id_list_table')
-        rows=table.find_elements_by_tag_name('tr')
-        self.assertIn(row_text,[row.text for row in rows])
+class NewVisitorTest(Functionaltest):
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         #莫如水听到一个很好玩的备忘录网站，他去访问了这个网站
@@ -99,8 +74,6 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.assertIn('去打羽毛球',page_text)
         self.assertNotIn('X',page_text)
 
-    def test_layout_and_styling(self):
-        self.driver.get(self.server_url)
 
 
 
